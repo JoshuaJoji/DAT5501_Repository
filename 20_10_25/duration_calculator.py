@@ -2,7 +2,10 @@ import numpy as np
 
 def date_diff_calculator(user_date):
     today = np.datetime64('today')
-    input_date = np.datetime64(user_date)
+    try:
+        input_date = np.datetime64(user_date)
+    except ValueError:
+        raise ValueError("Invalid date format. Please use YYYY-MM-DD.")
     day_diff = (input_date - today).astype(int)
     return day_diff
 
