@@ -15,3 +15,12 @@ plt.ylabel('Price (USD)')
 plt.legend()
 plt.grid(True)
 plt.show()
+
+df['Daily % Change'] = df['Close/Last'].pct_change() * 100
+plt.plot(df['Date'], df['Daily % Change'], label='Daily % Change', color='orange')
+plt.title('Amazon (AMZN): Daily % Change in Price')
+plt.xlabel('Date')
+plt.ylabel('Percentage Change (%)')
+plt.legend()
+plt.grid(True)
+plt.show()
