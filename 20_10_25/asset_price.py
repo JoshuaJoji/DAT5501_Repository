@@ -1,0 +1,17 @@
+import pandas as pd
+
+df = pd.read_csv('amazon_historical_nasdaq.csv')
+print(df.head())
+df['Close/Last'] = pd.to_numeric(df['Close/Last'].str.replace('$', '').str.replace(',', ''), errors='coerce')
+df['Date'] = pd.to_datetime(df['Date'])
+df = df.sort_values('Date')
+
+import matplotlib.pyplot as plt
+
+plt.plot(df['Date'], df['Close/Last'], label='AMZN Closing Price')
+plt.title('Amazon (AMZN): 1 Year Closing Prices')
+plt.xlabel('Date')
+plt.ylabel('Price (USD)')
+plt.legend()
+plt.grid(True)
+plt.show()
