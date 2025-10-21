@@ -24,3 +24,6 @@ plt.ylabel('Percentage Change (%)')
 plt.legend()
 plt.grid(True)
 plt.show()
+
+std_dev = df['Daily % Change'].std()
+print(f'Standard Deviation of Daily % Change: {std_dev:.2f}%')
