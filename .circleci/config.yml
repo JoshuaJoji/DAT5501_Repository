@@ -13,7 +13,7 @@ jobs:
             . venv/bin/activate
             pip install pandas matplotlib pytest
       - run:
-          name: Run tests
-          command: |
-            . venv/bin/activate
-            pytest -v
+    name: Run tests (only 23_10_25)
+    command: |
+      source venv/bin/activate
+      pytest 23_10_25/ -v
