@@ -7,13 +7,20 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install dependencies
+          name: Set up Python environment
           command: |
             python -m venv venv
-            . venv/bin/activate
+            source venv/bin/activate
+            pip install --upgrade pip
             pip install pandas matplotlib pytest
       - run:
-    name: Run tests (only 23_10_25)
-    command: |
-      source venv/bin/activate
-      pytest 23_10_25/ -v
+          name: Run tests (only 23_10_25)
+          command: |
+            source venv/bin/activate
+            pytest 23_10_25/ -v
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
