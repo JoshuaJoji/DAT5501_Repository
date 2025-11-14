@@ -1,7 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
 def calculate_fractions(filename='US-2016-primary.csv', candidate_name='Donald Trump'):
     """Calculate vote fractions per state for a given candidate."""
     df = pd.read_csv(filename, sep=';')
@@ -18,7 +17,6 @@ def calculate_fractions(filename='US-2016-primary.csv', candidate_name='Donald T
     candidate_filter = merged[merged['candidate'] == candidate_name].sort_values('fraction', ascending=False)
     return candidate_filter
 
-
 def plot_candidate_fractions(candidate_filter, candidate_name):
     """Plot fraction of votes by state for one candidate."""
     plt.figure(figsize=(20, 10))
@@ -29,7 +27,6 @@ def plot_candidate_fractions(candidate_filter, candidate_name):
     plt.ylabel('Fraction of Votes')
     plt.tight_layout()
     plt.savefig('candidate_fraction_plot.png')  #save
-
 
 if __name__ == "__main__":
     candidate_name = 'Donald Trump'
