@@ -15,9 +15,10 @@ y_train = train['Population'].values
 x_test = test['Year'].values
 y_test = test['Population'].values
 
+#Uncertainties as 2.5% of the population values
 sigma = 0.025 * df['Population'].values
 
-best_orders = [3, 5, 9]
+selected_orders = [3, 5, 9] #Polynomial orders to compare
 
 plt.figure(figsize=(10,6))
 
@@ -25,7 +26,7 @@ plt.errorbar(df['Year'], df['Population'], yerr=sigma, fmt='o', color='tab:blue'
              ecolor='lightblue', elinewidth=1, capsize=2, label='Observed data with uncertainties')
 
 colors = ['green', 'orange', 'red']
-for i, deg in enumerate(best_orders):
+for i, deg in enumerate(selected_orders):
     coeffs = np.polyfit(x_train, y_train, deg)
     poly = np.poly1d(coeffs)
     x_fit = np.linspace(df['Year'].min(), df['Year'].max(), 500)
@@ -35,6 +36,10 @@ for i, deg in enumerate(best_orders):
     
     if deg == 5:
         label_text = f'Polynomial order {deg} (Best Fit)'
+    elif deg == 3:
+        label_text = f'Polynomial order {deg} (Underfitting)'
+    elif deg == 9:
+        label_text = f'Polynomial order {deg} (Overfitting)'
     else:
         label_text = f'Polynomial order {deg}'
 

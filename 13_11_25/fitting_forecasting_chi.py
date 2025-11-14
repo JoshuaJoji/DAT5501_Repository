@@ -68,6 +68,6 @@ plt.show()
 sorted_results = sorted(zip(degrees, chi2_values), key=lambda x: x[1])
 best_three = sorted_results[:3]
 
-print("Best fits (lowest χ² per degree of freedom):")
+print("Best fits (lowest χ² per degree of freedom):") #display best three
 for rank, (deg, val) in enumerate(best_three, start=1):
     print(f"{rank}. Order {deg} χ²/ν = {val:.4f}")

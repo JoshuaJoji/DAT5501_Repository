@@ -8,6 +8,7 @@ df.columns = ['Year', 'Population']
 df['Year'] = pd.to_numeric(df['Year'])
 df['Population'] = pd.to_numeric(df['Population'])
 
+#Split data into training and testing sets
 train = df.iloc[:-10]   
 test = df.iloc[-10:]
 #print(test)
@@ -21,6 +22,7 @@ y_test = test['Population'].values
 plt.figure(figsize=(10,6))
 plt.scatter(df['Year'], df['Population'], color='black', label='Actual data')
 
+#Fit and plot polynomials of degree 1 to 9
 for deg in range(1, 10):
     coeffs = np.polyfit(x_train, y_train, deg)
     poly = np.poly1d(coeffs)

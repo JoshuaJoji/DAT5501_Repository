@@ -1,0 +1,7 @@
+This Activity is for Model Validation and Testing
+
+1. 'Fitting_Forecasting_Activity.py' includes code with polynomial orders from 1 to 9
+
+2. fitting_forecasting_chi.py' is code finding the chi-squared values plotted on gragh: χ² per Degree of Freedom for Polynomial Fits
+
+3. 'fitting_forecast_model_selection.py' is the final code for this activity. It includes the 3 polynomial fits: 3, 5, 9. Underfitting, Best Fit, Overfitting
