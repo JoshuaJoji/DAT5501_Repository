@@ -15,13 +15,10 @@ y_train = train['Population'].values
 x_test = test['Year'].values
 y_test = test['Population'].values
 
-#Uncertainties as 2.5% of the population values
+#uncertainties as 2.5% of the population values
 sigma = 0.025 * df['Population'].values
-
 selected_orders = [3, 5, 9] #Polynomial orders to compare
-
 plt.figure(figsize=(10,6))
-
 plt.errorbar(df['Year'], df['Population'], yerr=sigma, fmt='o', color='tab:blue',
              ecolor='lightblue', elinewidth=1, capsize=2, label='Observed data with uncertainties')
 
@@ -48,7 +45,6 @@ for i, deg in enumerate(selected_orders):
 
 fit_limit = x_train.max()  #last year of training data
 plt.axvline(x=fit_limit, color='black', linestyle='--', label=f'Fit limit ({int(fit_limit)})')
-
 plt.title('UK Population Forecast – Weighted Polynomial Fits Comparison', fontsize=13)
 plt.xlabel('Year', fontsize=12)
 plt.ylabel('Population', fontsize=12)

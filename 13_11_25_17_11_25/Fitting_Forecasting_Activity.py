@@ -9,7 +9,7 @@ df['Year'] = pd.to_numeric(df['Year'])
 df['Population'] = pd.to_numeric(df['Population'])
 
 #Split data into training and testing sets
-train = df.iloc[:-10]   
+train = df.iloc[:-10]
 test = df.iloc[-10:]
 #print(test)
 

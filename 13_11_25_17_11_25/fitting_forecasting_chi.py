@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import os
 
 df = pd.read_csv('UK_Pop_1950_2025.csv')
 df.columns = ['Year', 'Population']
@@ -32,15 +33,11 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
-# --------------------------------
-# --- Finding Chi-squared stat ---
-# --------------------------------
-
+#x² Calculation
 x = df['Year'].values
 y = df['Population'].values
 N = len(x)
-
-sigma = 0.01 * y
+sigma = 0.01 * y#1% uncertainties
 
 chi2_values = []
 degrees = range(1, 10)
@@ -49,25 +46,53 @@ for deg in degrees:
     coeffs = np.polyfit(x, y, deg)
     poly = np.poly1d(coeffs)
     y_pred = poly(x)
-
     chi2 = np.sum(((y - y_pred) ** 2) / (sigma ** 2))
     dof = N - (deg + 1)
     chi2_per_dof = chi2 / dof
     chi2_values.append(chi2_per_dof)
-
-    print(f"Degree {deg}: χ²/ν = {chi2_per_dof:.4f}")
+    print(f"Degree {deg}: X²/ν = {chi2_per_dof:.4f}")
 
 plt.figure(figsize=(8,5))
 plt.plot(degrees, chi2_values, 'o-', color='purple')
-plt.title('χ² per Degree of Freedom for Polynomial Fits')
+plt.title('X² per Degree of Freedom for Polynomial Fits')
 plt.xlabel('Polynomial Order')
-plt.ylabel('χ²/ν')
+plt.ylabel('X²/ν')
+plt.grid(True)
+plt.show()
+
+#BIC Calculation
+
+bic_values = []
+
+for deg in degrees:
+    coeffs = np.polyfit(x, y, deg)
+    poly = np.poly1d(coeffs)
+    y_pred = poly(x)
+
+    chi2 = np.sum(((y - y_pred) ** 2) / (sigma ** 2))
+
+    N_obs = N
+    N_params = deg + 1
+    BIC = chi2 + N_params * np.log(N_obs)
+    bic_values.append(BIC)
+
+    print(f"Degree {deg}: BIC = {BIC:.4f}")
+
+plt.figure(figsize=(8,5))
+plt.plot(degrees, bic_values, 'o-', color='darkred')
+plt.title('BIC for Polynomial Fits')
+plt.xlabel('Polynomial Order')
+plt.ylabel('BIC')
 plt.grid(True)
 plt.show()
 
 sorted_results = sorted(zip(degrees, chi2_values), key=lambda x: x[1])
 best_three = sorted_results[:3]
 
-print("Best fits (lowest χ² per degree of freedom):") #display best three
+print("\nBest fits (lowest X² per degree of freedom):")
 for rank, (deg, val) in enumerate(best_three, start=1):
     print(f"{rank}. Order {deg} χ²/ν = {val:.4f}")
+
+sorted_bic = sorted(zip(degrees, bic_values), key=lambda x: x[1])
+print("\nBest model (BIC):")
+print(f"Order {sorted_bic[0][0]}  (BIC={sorted_bic[0][1]:.3f})")
