@@ -69,3 +69,22 @@ plt.grid(alpha=0.3)
 plt.legend()
 plt.tight_layout()
 plt.show()
+
+#refit with covariance matrix
+best_coeffs, cov = np.polyfit(x_train, y_train, best_deg, cov=True)
+best_poly = np.poly1d(best_coeffs)
+
+param_uncertainties = np.sqrt(np.diag(cov))
+
+print(f"\nBest polynomial degree = {best_deg}")
+print("\nParameter estimates with uncertainties:")
+
+for i, (c, u) in enumerate(zip(best_coeffs, param_uncertainties)):
+    print(f"a{i} = {c:.4e} ± {u:.4e}")
+
+x_fit = np.linspace(x.min(), x.max(), 500)
+y_fit = best_poly(x_fit)
+y_fit_unc = np.zeros_like(y_fit)
+
+for i in range(len(best_coeffs)):
+    y_fit_unc += (param_uncertainties[i] * x_fit**(best_deg - i))**2
