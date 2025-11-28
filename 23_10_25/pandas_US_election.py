@@ -1,9 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
 def calculate_fractions(filename='US-2016-primary.csv', candidate_name='Donald Trump'):
-    """Calculate vote fractions per state for a given candidate."""
-    df = pd.read_csv(filename, sep=';')
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(script_dir, filename)
+
+    df = pd.read_csv(csv_path, sep=';')
     df['candidate'] = df['candidate'].str.strip()
     df['state'] = df['state'].str.strip()
 
@@ -15,9 +18,9 @@ def calculate_fractions(filename='US-2016-primary.csv', candidate_name='Donald T
     merged['fraction'] = merged['votes'] / merged['total_votes']
 
     candidate_filter = merged[merged['candidate'] == candidate_name].sort_values('fraction', ascending=False)
-    return candidate_filter
+    return candidate_filter, script_dir  
 
-def plot_candidate_fractions(candidate_filter, candidate_name):
+def plot_candidate_fractions(candidate_filter, candidate_name, script_dir):
     """Plot fraction of votes by state for one candidate."""
     plt.figure(figsize=(20, 10))
     plt.bar(candidate_filter['state'], candidate_filter['fraction'], color='steelblue')
@@ -26,9 +29,13 @@ def plot_candidate_fractions(candidate_filter, candidate_name):
     plt.xlabel('State')
     plt.ylabel('Fraction of Votes')
     plt.tight_layout()
-    plt.savefig('candidate_fraction_plot.png')  #save
+
+    output_path = os.path.join(script_dir, 'candidate_fraction_plot.png')
+    plt.savefig(output_path)
+
+    print(f"Plot saved to: {output_path}")
 
 if __name__ == "__main__":
     candidate_name = 'Donald Trump'
-    candidate_filter = calculate_fractions('US-2016-primary.csv', candidate_name)
-    plot_candidate_fractions(candidate_filter, candidate_name)
+    candidate_filter, script_dir = calculate_fractions('US-2016-primary.csv', candidate_name)
+    plot_candidate_fractions(candidate_filter, candidate_name, script_dir)
