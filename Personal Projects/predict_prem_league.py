@@ -1,6 +1,11 @@
 import pandas as pd
+import os
 
-df = pd.read_csv('E0.csv')
+script_dir = os.path.dirname(os.path.abspath(__file__))
+csv_path = os.path.join(script_dir, "E0.csv")
+df = pd.read_csv(csv_path)
+
+#df = pd.read_csv('E0.csv')
 print(df.head())
 
 df["GoalDiff"] = df["FTHG"] - df["FTAG"]

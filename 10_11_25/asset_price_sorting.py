@@ -2,8 +2,13 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import time
+import os
 
-df = pd.read_csv('amazon_historical_nasdaq.csv')
+script_dir = os.path.dirname(os.path.abspath(__file__))
+csv_path = os.path.join(script_dir, "amazon_historical_nasdaq.csv")
+df = pd.read_csv(csv_path)
+
+#df = pd.read_csv('amazon_historical_nasdaq.csv')
 
 df['Date'] = pd.to_datetime(df['Date'], format='%m/%d/%Y')
 df = df.sort_values(by='Date', ascending=True)
