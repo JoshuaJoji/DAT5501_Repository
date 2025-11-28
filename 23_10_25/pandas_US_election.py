@@ -20,8 +20,7 @@ def calculate_fractions(filename='US-2016-primary.csv', candidate_name='Donald T
     candidate_filter = merged[merged['candidate'] == candidate_name].sort_values('fraction', ascending=False)
     return candidate_filter, script_dir  
 
-def plot_candidate_fractions(candidate_filter, candidate_name, script_dir):
-    """Plot fraction of votes by state for one candidate."""
+def plot_candidate_fractions(candidate_filter, candidate_name, script_folder):
     plt.figure(figsize=(20, 10))
     plt.bar(candidate_filter['state'], candidate_filter['fraction'], color='steelblue')
     plt.xticks(rotation=90, ha='right')
@@ -30,7 +29,7 @@ def plot_candidate_fractions(candidate_filter, candidate_name, script_dir):
     plt.ylabel('Fraction of Votes')
     plt.tight_layout()
 
-    output_path = os.path.join(script_dir, 'candidate_fraction_plot.png')
+    output_path = os.path.join(script_folder, "candidate_fraction_plot.png")
     plt.savefig(output_path)
 
     print(f"Plot saved to: {output_path}")
