@@ -7,6 +7,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from ucimlrepo import fetch_ucirepo
 
+# I USED AI TO SET UP THE SSL CONTEXT FOR FETCHING DATASETS
+ssl._create_default_https_context = lambda: ssl.create_default_context(cafile=certifi.where())  #noqa: E731 # this forces python to use the certifi trusted certificate list when making HTTPS requests
+# Previously, fetching datasets from UCI failed with:
+# "ssl.SSLCertVerificationError: unable to get local issuer certificate"
+ 
 # fetch dataset
 mushroom = fetch_ucirepo(id=73)
 
