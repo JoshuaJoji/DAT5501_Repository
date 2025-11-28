@@ -7,62 +7,59 @@ The work is organised into folders, each containing a specific activity, mini-pr
 
 ## Folder Structure & Summaries
 
-- **22_09_25**
-Contains introductory Python script:
-- print ("Hello, World!").py – Basic test script printing “Hello, World!”.
+- **22_09_25**  
+  Contains introductory Python script:
+  - `print("Hello, World!").py` – Basic test script printing “Hello, World!”.
 
-- **25_09_25**
-Foundational Python programming tasks:
-- add_number.py – Simple script for adding numbers.
-- functions.py – Contains example functions demonstrating Python function definitions.
-- functions_testing.py – Test file used to verify the behaviour of functions.py.
+- **25_09_25**  
+  Foundational Python programming tasks:
+  - `add_number.py` – Simple script for adding numbers.
+  - `functions.py` – Example Python functions.
+  - `functions_testing.py` – Tests for `functions.py`.
 
-- **06_10_25**
-Date and calendar practice:
-- calendar_printer.py – Script for printing a formatted calendar for a given month & year.
+- **06_10_25**  
+  Date and calendar practice:
+  - `calendar_printer.py` – Prints a monthly calendar.
 
-- **20_10_25**
-Time, date, and data-handling tasks:
-- asset_price.py – Asset price modelling exercise.
-- date_diff_test.py – Tests for calculating date differences.
-- duration_calculator.py – Script for computing durations between dates.
-- random_dates.csv – Dataset used by the above scripts.
+- **20_10_25**  
+  Time, date, and data-handling tasks:
+  - `asset_price.py` – Asset price modelling.
+  - `date_diff_test.py` – Tests for date difference calculations.
+  - `duration_calculator.py` – Computes duration between dates.
+  - `random_dates.csv` – Dataset used in these scripts.
 
-- **23_10_25**
-Pandas and data wrangling with US election data:
-- pandas_US_election.py – Data analysis using pandas on US primary election data.
-- test_pandas_US_election.py – Unit tests for the election analysis script.
-- US-2016-primary.csv – Dataset used in the analysis.
+- **23_10_25**  
+  Pandas and data wrangling:
+  - `pandas_US_election.py` - analysis of US 2016 primary data.
+  - `test_pandas_US_election.py` - unit tests for verifying functions.
+  - `US-2016-primary.csv` - dataset used for the tasks.
 
-- **10_11_25**
-Sorting and analysing financial data:
-- asset_price_sorting.py – Sorting and evaluating asset price movements.
-- amazon_historical_nasdaq.csv – Historical Amazon stock dataset used in script.
+- **10_11_25**  
+  Sorting and financial analysis:
+  - `asset_price_sorting.py` - measures sorting performance of price changes.
+  - `amazon_historical_nasdaq.csv` - dataset for sorting experiments.
 
-- **13_11_25_17_11_25**
-Polynomial fitting, forecasting & model-selection activities:
-- fitting_forecast_bic.py – Weighted polynomial forecasting with BIC model selection and parameter uncertainty.
-- fitting_forecas_model_selection.py – Comparison of polynomial orders and forecasting behaviour.
-- Fitting_Forecasting_Activity.py – χ² (chi-squared) calculations and BIC evaluation.
-- fitting_forecasting_chi.py – Detailed chi-squared and BIC model analysis.
-- UK_Pop_1950_2025.csv – UK population dataset used for forecasting.
+- **13_11_25_17_11_25**  
+  Polynomial fitting, forecasting & model selection:
+  - `fitting_forecast_bic.py` - model selection using BIC.
+  - `fitting_forecas_model_selection.py` - comparison of polynomial fits.
+  - `Fitting_Forecasting_Activity.py` - χ²/dof analysis for polynomial models.
+  - `fitting_forecasting_chi.py` - full χ² and BIC workflow with diagnostics.
+  - `UK_Pop_1950_2025.csv` - dataset used for population forecasting.
 
-- **24_11_25_27_11_25**
-Supervised machine learning:
-- mushroom_decision_tree.py – Decision Tree classifier on the Agaricus-Lepiota mushroom dataset (edible vs poisonous).
-Includes data encoding, train/test split, model fitting, accuracy score, and tree visualisation.
+- **24_11_25_27_11_25**  
+  Machine learning (Decision Tree):
+  - `mushroom_decision_tree.py` - trains and plots a Decision Tree classifier for mushroom edibility.
 
 - **OWiD_Presentation**
-Work related to an Our World in Data–based presentation:
-- gdp_vs_meat_consumption.py – Analysis of GDP vs global meat-consumption patterns.
-- meat-consumption-vs-gdp-per-capita.csv – Dataset used for the analysis.
+  - `gdp_vs_meat_consumption.py` - examines GDP vs meat consumption.
+  - `meat-consumption-vs-gdp-per-capita.csv` - supporting dataset.
 
 - **Personal_Projects**
-Independent projects:
-- predict_prem_league.py – Prediction modelling for Premier League football results.
-- table_tennis_game.py – Simple interactive table-tennis scoring game.
-- internet_speed_tracker/ – Sub-folder containing a Python project to log and track internet speed over time.
-- E0.csv – Dataset used in one of the personal scripts.
+  - `predict_prem_league.py` - simple premier league outcome prediction.
+  - `table_tennis_game.py` - small interactive game.
+  - `internet_speed_tracker/` - logs and analyses internet speeds over time.
+  - `E0.csv` - dataset linked to a personal script.
 
 ---
 
@@ -97,3 +94,5 @@ Navigate to folder and run script
 - Analysed Nasdaq financial data and measured sorting complexity vs n log n.
 - Created **personal mini projects** including a Premier League predictor and internet speed tracker.
 - Performed **polynomial fitting and forecasting** with statistical model selection (χ², BIC).
+
+---
