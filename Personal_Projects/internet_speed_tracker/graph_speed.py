@@ -3,10 +3,10 @@ import matplotlib.pyplot as plt
 
 df = pd.read_csv("speed_log.csv")
 
-plt.figure(figsize=(12, 6))
+plt.figure(figsize=(12, 6)) # Set figure size
 plt.plot(df["Time"], df["Download_Mbps"], label="Download")
 plt.plot(df["Time"], df["Upload_Mbps"], label="Upload")
-plt.xticks(rotation=45)
+plt.xticks(rotation=45) # Rotate x-axis labels for better readability
 plt.ylabel("Mbps")
 plt.title("Internet Speed Over Time")
 plt.legend()

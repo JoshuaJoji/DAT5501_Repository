@@ -1,6 +1,10 @@
+# Calendar Printer
+# This program prints a simple calendar for a month based on user input.
+
 print("How many days in your month?")
 days_in_month = int(input())
 
+# Validate the number of days
 while True:
     print("What day of the week does your month start on? s = 0, m = 1, t = 2...")
     start_day = int(input())
@@ -11,6 +15,7 @@ while True:
 
 print("S  M  T  W  T  F  S")
 
+# Print leading spaces for the first week
 current_day = 1
 for space in range(start_day):
     print("--", end=" ")

@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import os
 
+# Function to calculate the difference in days between today and a given date
 def date_diff_calculator(user_date):
     today = np.datetime64('today')
     try:
@@ -11,6 +12,7 @@ def date_diff_calculator(user_date):
     day_diff = (input_date - today).astype(int)
     return day_diff
 
+# Function to read dates from a CSV file and calculate the day differences
 def calculate_csv(file_name="random_dates.csv"):
     script_dir = os.path.dirname(os.path.abspath(__file__))
     csv_path = os.path.join(script_dir, file_name)

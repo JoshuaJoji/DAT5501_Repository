@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
+# Load data
 script_dir = os.path.dirname(os.path.abspath(__file__))
 csv_path = os.path.join(script_dir, "UK_Pop_1950_2025.csv")
 df = pd.read_csv(csv_path)
@@ -10,22 +11,28 @@ df.columns = ['Year', 'Population']
 df['Year'] = df['Year'].astype(float)
 df['Population'] = df['Population'].astype(float)
 
+# Split data into training and testing sets
 train = df.iloc[:-10]
 test = df.iloc[-10:]
 
+# Prepare data for fitting
 x_train = train['Year'].values
 y_train = train['Population'].values
 
+# Full data for evaluation
 x = df['Year'].values
 y = df['Population'].values
 
+# Assume 2.5% uncertainty in population data
 N = len(x)
 sigma = 0.025 * y #2.5% uncertaint
 
+# Model fitting and BIC calculation
 degrees = range(1, 12)
 bic_values = []
 chi2_values = []
 
+# Fit polynomials of varying degrees and compute BIC
 for deg in degrees:
     coeffs = np.polyfit(x_train, y_train, deg)
     poly = np.poly1d(coeffs)
@@ -42,6 +49,7 @@ best_deg = degrees[np.argmin(bic_values)]
 best_coeffs = np.polyfit(x_train, y_train, best_deg)
 best_poly = np.poly1d(best_coeffs)
 
+# Plot BIC and reduced chi-squared
 print(f"Best model degree (lowest BIC): {best_deg}")
 plt.figure(figsize=(12,6))
 
@@ -51,6 +59,7 @@ plt.errorbar(
     capsize=2, label="Observed data with uncertainties"
 )
 
+# Plot best fit polynomial
 x_fit = np.linspace(x.min(), x.max(), 500)
 y_fit = best_poly(x_fit)
 
@@ -82,6 +91,7 @@ param_uncertainties = np.sqrt(np.diag(cov))
 print(f"\nBest polynomial degree = {best_deg}")
 print("\nParameter estimates with uncertainties:")
 
+# Display coefficients with uncertainties
 for i, (c, u) in enumerate(zip(best_coeffs, param_uncertainties)):
     print(f"a{i} = {c:.4e} ± {u:.4e}")
 

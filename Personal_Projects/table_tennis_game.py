@@ -17,7 +17,7 @@ PADDLE_WIDTH, PADDLE_HEIGHT = 10, 80
 player_x, player_y = 30, HEIGHT // 2 - PADDLE_HEIGHT // 2
 ai_x, ai_y = WIDTH - 40, HEIGHT // 2 - PADDLE_HEIGHT // 2
 PLAYER_PADDLE_SPEED = 6
-AI_PADDLE_SPEED = 4  #default (Expert)
+AI_PADDLE_SPEED = 4  #default(Expert)
 
 #ball settings
 BALL_SIZE = 16
@@ -31,12 +31,14 @@ font = pygame.font.SysFont(None, 48)
 
 clock = pygame.time.Clock()
 
+#reset ball position and direction
 def reset_ball():
     global ball_x, ball_y, ball_dx, ball_dy
     ball_x, ball_y = WIDTH // 2, HEIGHT // 2
     ball_dx *= -1
     ball_dy = 4 if ball_dy > 0 else -4
 
+#draw everything
 def draw():
     screen.fill(BLACK)
     pygame.draw.rect(screen, WHITE, (player_x, player_y, PADDLE_WIDTH, PADDLE_HEIGHT))
@@ -49,6 +51,7 @@ def draw():
     screen.blit(ai_text, (WIDTH * 3 // 4, 20))
     pygame.display.flip()
 
+#difficulty selection menu
 def choose_difficulty():
     global AI_PADDLE_SPEED
     menu_font = pygame.font.SysFont(None, 36)
@@ -58,18 +61,19 @@ def choose_difficulty():
         ("Expert (Press 3)", 4),
         ("Impossible (Press 4)", 10)]
     
-    selecting = True
+    selecting = True #menu loop
     while selecting:
         screen.fill(BLACK)
         title = font.render("Select Difficulty", True, WHITE)
         screen.blit(title, (WIDTH//2 - title.get_width()//2, 100))
-        
+        #display options
         for i, (label, _) in enumerate(difficulties):
             text = menu_font.render(label, True, WHITE)
             screen.blit(text, (WIDTH//2 - text.get_width()//2, 200 + i*50))
         
         pygame.display.flip()
         
+        #event handling
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -88,6 +92,7 @@ def choose_difficulty():
                     AI_PADDLE_SPEED = 10
                     selecting = False
 
+#main game loop
 def main():
     global player_y, ai_y, ball_x, ball_y, ball_dx, ball_dy, player_score, ai_score
     

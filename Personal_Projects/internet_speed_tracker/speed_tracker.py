@@ -6,6 +6,7 @@ import os
 
 proj_folder = "Projects/internet_speed_tracker"
 
+# Function to run speed test and return results
 def run_speed_test():
     st = speedtest.Speedtest()
     st.get_best_server()
@@ -23,6 +24,7 @@ def run_speed_test():
         "Ping_ms": round(ping, 2)
     }
 
+# Function to save results to CSV
 def save_to_csv(data, filename="speed_log.csv"):
     filepath = os.path.join(proj_folder, filename)
     df = pd.DataFrame([data])
@@ -35,6 +37,7 @@ def save_to_csv(data, filename="speed_log.csv"):
 
     df.to_csv(filename, index=False)
 
+# Main loop to run the speed test at intervals
 def main(interval_minutes=30):
     print("Internet Speed Tracker Started...\n")
 

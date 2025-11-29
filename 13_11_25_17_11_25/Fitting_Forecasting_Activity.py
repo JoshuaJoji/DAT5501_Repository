@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import os
 
+# Load dataset
 script_dir = os.path.dirname(os.path.abspath(__file__))
 csv_path = os.path.join(script_dir, "UK_Pop_1950_2025.csv")
 df = pd.read_csv(csv_path)
@@ -16,12 +17,15 @@ train = df.iloc[:-10]
 test = df.iloc[-10:]
 #print(test)
 
+# Prepare training and testing data
 x_train = train['Year'].values
 y_train = train['Population'].values
 
+# Prepare testing data
 x_test = test['Year'].values
 y_test = test['Population'].values
 
+#Plot actual data
 plt.figure(figsize=(10,6))
 plt.scatter(df['Year'], df['Population'], color='black', label='Actual data')
 
@@ -35,6 +39,7 @@ for deg in range(1, 10):
 
     plt.plot(x_future, y_future, label=f'Order {deg}')
 
+# Final plot adjustments
 plt.title('Polynomial Fits for UK Population (1950–2025)')
 plt.xlabel('Year')
 plt.ylabel('Population')

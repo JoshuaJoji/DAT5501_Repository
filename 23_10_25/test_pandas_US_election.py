@@ -6,13 +6,14 @@ from pandas_US_election import calculate_fractions, plot_candidate_fractions
 script_dir = os.path.dirname(os.path.abspath(__file__))
 csv_path = os.path.join(script_dir, "US-2016-primary.csv")
 
+# Test cases for pandas_US_election.py
 def test_only_selected_candidate_returned():
     candidate = 'Donald Trump'
     df, _ = calculate_fractions(csv_path, candidate)
     assert df['candidate'].nunique() == 1, "Should only return one candidate"
     assert df['candidate'].iloc[0] == candidate, "Returned candidate should match input"
 
-
+# Test that fractions are calculated correctly
 def test_state_fractions_sum_to_one():
     df, _ = calculate_fractions(csv_path, 'Donald Trump')
 
@@ -30,7 +31,7 @@ def test_state_fractions_sum_to_one():
 
     assert state_sums.between(0.99, 1.01).all(), "Fractions per state should sum to ~1"
 
-
+# Test that the plot function creates a file
 def test_plot_saves_file(tmp_path):
     candidate = 'Donald Trump'
 

@@ -4,25 +4,30 @@ import matplotlib.pyplot as plt
 import time
 import os
 
+# Load data
 script_dir = os.path.dirname(os.path.abspath(__file__))
 csv_path = os.path.join(script_dir, "amazon_historical_nasdaq.csv")
 df = pd.read_csv(csv_path)
 
 #df = pd.read_csv('amazon_historical_nasdaq.csv')
 
+# Data cleaning and processing
 df['Date'] = pd.to_datetime(df['Date'], format='%m/%d/%Y')
 df = df.sort_values(by='Date', ascending=True)
 
 pd.set_option('display.max_rows', None)
 
+# Convert 'Close/Last' to numeric and calculate daily price changes
 df['Close/Last'] = df['Close/Last'].replace('[\$,]', '', regex=True).astype(float)
 df['Daily Price Change'] = df['Close/Last'].diff()
 
 print(df)
 
+# Measure sorting time for increasing sizes of daily price changes
 price_changes = df['Daily Price Change'].dropna().to_numpy()
 times = []
 
+# Measure sorting time
 for i in range(7, len(price_changes)):
     
     array_to_sort = price_changes[:i]
@@ -34,10 +39,12 @@ for i in range(7, len(price_changes)):
     time_taken = end_time - start_time
     times.append(time_taken)
 
+# Plotting the results
 x_values = np.arange(7, len(times)+7)
 n_log_n = x_values * np.log(x_values) 
 n_log_n = n_log_n / np.max(n_log_n) * np.max(times)#normalise
 
+# Create plot
 plt.figure(figsize=(8, 4))
 plt.plot(x_values, times, linestyle='-', color='blue')
 plt.plot(x_values, n_log_n, label='n log n', color='red')

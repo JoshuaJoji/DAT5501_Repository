@@ -10,9 +10,11 @@ df.columns = ['Year', 'Population']
 df['Year'] = pd.to_numeric(df['Year'])
 df['Population'] = pd.to_numeric(df['Population'])
 
+# Split data into training and testing sets
 train = df.iloc[:-10]
 test = df.iloc[-10:]
 
+# Prepare training and testing data
 x_train = train['Year'].values
 y_train = train['Population'].values
 x_test = test['Year'].values
@@ -25,6 +27,7 @@ plt.figure(figsize=(10,6))
 plt.errorbar(df['Year'], df['Population'], yerr=sigma, fmt='o', color='tab:blue',
              ecolor='lightblue', elinewidth=1, capsize=2, label='Observed data with uncertainties')
 
+# Fit and plot polynomials of selected orders
 colors = ['green', 'orange', 'red']
 for i, deg in enumerate(selected_orders):
     coeffs = np.polyfit(x_train, y_train, deg)
@@ -35,17 +38,18 @@ for i, deg in enumerate(selected_orders):
     style = '-' if i == 0 else '--' if i == 1 else ':'
     
     if deg == 5:
-        label_text = f'Polynomial order {deg} (Best Fit)'
+        label_text = f'Polynomial order {deg} (Best Fit)' # Highlighting best fit
     elif deg == 3:
-        label_text = f'Polynomial order {deg} (Underfitting)'
+        label_text = f'Polynomial order {deg} (Underfitting)'# Highlighting underfitting
     elif deg == 9:
-        label_text = f'Polynomial order {deg} (Overfitting)'
+        label_text = f'Polynomial order {deg} (Overfitting)'# Highlighting overfitting
     else:
         label_text = f'Polynomial order {deg}'
 
     plt.plot(x_fit, y_fit, style, color=colors[i],
          linewidth=2, label=label_text)
 
+# Indicate the fit limit
 fit_limit = x_train.max()  #last year of training data
 plt.axvline(x=fit_limit, color='black', linestyle='--', label=f'Fit limit ({int(fit_limit)})')
 plt.title('UK Population Forecast – Weighted Polynomial Fits Comparison', fontsize=13)
