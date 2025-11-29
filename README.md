@@ -18,8 +18,10 @@ The work is organised into folders, each containing a specific activity, mini-pr
   - `functions_testing.py` – Tests for `functions.py`.
 
 - **06_10_25**  
-  Date and calendar practice:
+  Date, calendar practice, and compound interest calculator:
   - `calendar_printer.py` – Prints a monthly calendar.
+  - `compound_interest_calculator.py` - Calculator for compound interest
+  - `compound_interest_test.py` - test file for compound interest 
 
 - **20_10_25**  
   Time, date, and data-handling tasks:
